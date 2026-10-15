@@ -25,7 +25,7 @@ Also, we might modify these scripts, when this is deployed with Kubernetes (it's
 
 ### Wanna setup everything
 
-This installs everything, sets up the database, and runs the get-data script.
+This installs everything, sets up the database, unpacks `bj_data.zip`, and imports it into PostGIS.
 
 ```bash
 docker compose up -d --build
@@ -39,15 +39,11 @@ docker compose up -d --build db
 
 ### Just get data?
 
-Overpass API is kinda unstable, and im too lazy to setup retries, so just run it again if it fails (btw there is no need for --build if you need to rerun).
-
 ```bash
 docker compose up -d --build get-data
 ```
 
-You might wanna check:
-https://downforeveryoneorjustme.com/overpass-api.de
-https://overpass-api.de/api/status
+The importer creates `osm_nodes`, `osm_edges`, and `trajectories`, plus a `trajectory_lines` view. The trajectory table stores `taxi_id` from CSV column 1 and `trajectory_id` from CSV column 2. `trajectory_lines` creates one road-following PostGIS line per trip when queried. Use `dataset = 'traj_train_100'` when viewing the complete training data because the smaller training files overlap. The ZIP is mounted into the importer container and extracted into `bj_data/`.
 
 ### Wanna watch?
 

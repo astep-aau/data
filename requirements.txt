@@ -1,6 +1,5 @@
 geopandas
 geoalchemy2
-osmnx
 psycopg2-binary
 python-dotenv
 sqlalchemy
