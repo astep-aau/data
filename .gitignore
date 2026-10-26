@@ -3,4 +3,3 @@ __pycache__/
 *.py[cod]
 .venv/
 bj_data/
-bj_data.zip

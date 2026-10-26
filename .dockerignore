@@ -3,5 +3,4 @@
 __pycache__
 *.py[cod]
 .bj_data
-bj_data.zip
 .env
